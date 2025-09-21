@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Your Event</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background-color: #03182c;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 60px auto;
+        padding: 20px;
+        background: linear-gradient(145deg, #1f2a44, #03182c);
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+        text-align: center;
+        color: #6a11cb;
+        margin-bottom: 24px;
+    }
+
+    form input, form select, form textarea, form button {
+        width: 100%;
+        padding: 12px 16px;
+        margin-bottom: 16px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+
+    form input, form select, form textarea {
+        background-color: #1f2a44;
+        color: #fff;
+    }
+
+    form input::placeholder, form textarea::placeholder {
+        color: #aaa;
+    }
+
+    form button {
+        background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    form button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    }
+
+    #response {
+        text-align: center;
+        margin-top: 12px;
+        font-weight: bold;
+    }
+
+    #response.success {
+        color: #4BB543;
+    }
+
+    #response.error {
+        color: #FF4B5C;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Book Your Event</h2>
+    <form id="bookingForm">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="phone" placeholder="Your Phone" required>
+        <select name="eventType" required>
+            <option value="">Select Event</option>
+            <option value="Wedding">Wedding</option>
+            <option value="Birthday">Birthday</option>
+            <option value="Corporate">Corporate</option>
+        </select>
+        <input type="date" name="eventDate" required>
+        <textarea name="message" placeholder="Message (optional)"></textarea>
+        <button type="submit">Submit Booking</button>
+    </form>
+    <p id="response"></p>
+</div>
+
+<script>
+document.getElementById("bookingForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    const responseEl = document.getElementById("response");
+
+    responseEl.innerText = "Submitting...";
+    responseEl.className = "";
+
+    try {
+        const res = await fetch("http://localhost:5000/api/bookings", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+        });
+
+        const result = await res.json();
+
+        if (res.ok) {
+            responseEl.innerText = result.message || "Booking submitted successfully!";
+            responseEl.classList.add("success");
+            e.target.reset();
+        } else {
+            responseEl.innerText = result.error || "Failed to submit booking.";
+            responseEl.classList.add("error");
+        }
+    } catch (err) {
+        responseEl.innerText = "Server error. Please try again later!";
+        responseEl.classList.add("error");
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Services | Vismaya Wedding Planner</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background-color: #03182c;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2rem;
+    }
+
+    nav {
+        margin-top: 12px;
+    }
+
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 12px;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    nav a:hover {
+        color: #ffcc00;
+    }
+
+    section {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    section h2 {
+        text-align: center;
+        font-size: 1.8rem;
+        margin-bottom: 24px;
+        color: #ffcc00;
+    }
+
+    .services-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        list-style: none;
+        padding: 0;
+    }
+
+    .services-list li {
+        background-color: #0b1e3c;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        text-align: center;
+        font-size: 1.1rem;
+        transition: transform 0.3s, background 0.3s;
+        cursor: default;
+    }
+
+    .services-list li:hover {
+        transform: translateY(-5px);
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    }
+
+    @media(max-width: 600px){
+        nav a {
+            display: block;
+            margin: 8px 0;
+        }
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>Vismaya Wedding Planner</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="booking.html">Book Now</a>
+    </nav>
+</header>
+
+<section>
+    <h2>Our Professional Services</h2>
+    <ul class="services-list">
+        <li>💍 Wedding Planning</li>
+        <li>🎂 Birthday Parties</li>
+        <li>🏢 Corporate Events</li>
+        <li>🍽 Catering & Decoration</li>
+        <li>📸 Photography & Videography</li>
+    </ul>
+</section>
+</body>
+</html>
